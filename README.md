@@ -12,6 +12,6 @@ Our evaluations were done on an 8-Core Intel Core i7-10870H processor, with 16GB
 # Pre-requisites
 
 [ROS Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu) <br />
-[Octomap](http://wiki.ros.org/octomap);
-[Mavros](https://docs.px4.io/master/en/ros/mavros_installation.html);
-[QGroundControl](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html) (Optional);
+[Octomap](http://wiki.ros.org/octomap) <br />
+[Mavros](https://docs.px4.io/master/en/ros/mavros_installation.html) <br />
+[QGroundControl](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html) (Optional)<br />
