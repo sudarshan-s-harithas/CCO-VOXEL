@@ -4,6 +4,7 @@ CCO VOXEL is an algorithm that computes trajectory plans with probabilistic safe
  
 #### This page is under active development  
 
+#### Preprint: https://arxiv.org/abs/2110.02904 
 
 ## Setup 
 
