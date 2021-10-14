@@ -16,3 +16,11 @@ Our evaluations were done on an 8-Core Intel Core i7-10870H processor, with 16GB
 [Octomap](http://wiki.ros.org/octomap) <br />
 [Mavros](https://docs.px4.io/master/en/ros/mavros_installation.html) <br />
 [QGroundControl](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html) (Optional)<br />
+
+### Build
+```
+Enter into the *src* folder of your workspace <br />
+
+```
+
+
