@@ -3,6 +3,6 @@
 <!-- MAVROS -->	
 
 
-<node type="rviz" name="rviz" pkg="rviz" args="-d $(find FastPlannerOctomap)/rviz/planner_test.rviz" />
+<node type="rviz" name="rviz" pkg="rviz" args="-d $(find CCO_VOXEL)/rviz/planner_test.rviz" />
 
 </launch>

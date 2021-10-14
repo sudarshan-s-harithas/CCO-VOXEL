@@ -23,7 +23,7 @@
 </include> -->
 
 
-	    <node pkg="FastPlannerOctomap" type="pcNoise" name="pcNoise">
+	    <node pkg="CCO_VOXEL" type="pcNoise" name="pcNoise">
         <param name="noise" value="0.15"/>
         <remap from="output" to="output2"/>
     </node>
@@ -69,7 +69,7 @@
 
 
 <!-- Publish camera pose in world frame (read from EKF pose estimates and published over TF for octomap generation)-->
-<node pkg="FastPlannerOctomap" type="pubCamPose" name="pubCamPose"/>
+<node pkg="CCO_VOXEL" type="pubCamPose" name="pubCamPose"/>
 
 
 
@@ -98,6 +98,6 @@
 
 
 
-<node type="rviz" name="rviz" pkg="rviz" args="-d $(find FastPlannerOctomap)/rviz/planner.rviz" />
+<node type="rviz" name="rviz" pkg="rviz" args="-d $(find CCO_VOXEL)/rviz/planner.rviz" />
 
 </launch>
