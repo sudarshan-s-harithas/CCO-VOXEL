@@ -1,0 +1,10 @@
+<launch>
+
+<node pkg="FastPlannerOctomap" type="Planner" name="Planner"/>
+
+<node pkg="FastPlannerOctomap" type="Controller" name="Controller"/>
+
+<!-- <node pkg="FastPlannerOctomap" name="eval" type="eval_params.py" output="screen"/>  -->
+
+
+</launch>
