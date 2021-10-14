@@ -19,7 +19,8 @@ Our evaluations were done on an 8-Core Intel Core i7-10870H processor, with 16GB
 
 ### Build
 ```
-Enter into the *src* folder of your workspace <br />
+cd ~/catkin_ws/src/ 
+git clone 
 
 ```
 
