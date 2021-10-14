@@ -20,8 +20,9 @@ Our evaluations were done on an 8-Core Intel Core i7-10870H processor, with 16GB
 ### Build
 ```
 cd ~/catkin_ws/src/ 
-git clone 
-
+git clone https://github.com/sudarshan-s-harithas/CCO-VOXEL.git
+catkin_make -j4
+source devel/setup.bash 
 ```
 
 
