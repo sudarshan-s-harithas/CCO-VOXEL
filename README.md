@@ -31,6 +31,8 @@ source devel/setup.bash
 
 We provide Gazebo environments to test our algorithm that can be found [here](https://github.com/sudarshan-s-harithas/CCO-VOXEL/tree/main/CCO_VOXEL/worlds), Please follow the the instructions given [here](https://github.com/sudarshan-s-harithas/CCO-VOXEL/tree/main/CCO_VOXEL#origanization-of-your-working-directories) before continuing with the execution of the programs.    
 
+![](https://github.com/sudarshan-s-harithas/CCO-VOXEL/blob/main/Images/simulation.gif)
+
 Run the following commands to start CCO-VOXEL <br />
 
 
