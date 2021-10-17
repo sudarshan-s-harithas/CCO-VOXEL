@@ -29,7 +29,7 @@ source devel/setup.bash
 
 ### Evaluation 
 
-TODO
+We provide two Gazebo environments to test our algorithm, 
 
 
 
