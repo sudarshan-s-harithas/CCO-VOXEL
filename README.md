@@ -31,7 +31,27 @@ source devel/setup.bash
 
 We provide Gazebo environments to test our algorithm that can be found [here](https://github.com/sudarshan-s-harithas/CCO-VOXEL/tree/main/CCO_VOXEL/worlds), Please follow the the instructions given [here](https://github.com/sudarshan-s-harithas/CCO-VOXEL/tree/main/CCO_VOXEL#origanization-of-your-working-directories) before continuing with the execution of the programs.    
 
+Run the following commands to start CCO-VOXEL <br />
 
+
+```
+Terminal1: 
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
+roslaunch px4 mavros_posix_sitl.launch
+
+Terminal2: 
+roslaunch CCO_VOXEL MappingSim.launch
+
+Terminal3: 
+rosrun CCO_VOXEL Planner
+
+Terminal4: 
+
+rosrun CCO_VOXEL Controller
+
+```
 
 ### Acknowledgements 
 
