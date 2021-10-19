@@ -17,7 +17,7 @@ Our evaluations were done on an 8-Core Intel Core i7-10870H processor, with 16GB
 [ROS Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu) <br />
 [Octomap](http://wiki.ros.org/octomap) <br />
 [Mavros](https://docs.px4.io/master/en/ros/mavros_installation.html) <br />
-[PX4-Autopilot](https://docs.px4.io/master/en/dev_setup/dev_env_linux_ubuntu.html#gazebo-jmavsim-and-nuttx-pixhawk-targets)
+[PX4-Autopilot](https://docs.px4.io/master/en/dev_setup/dev_env_linux_ubuntu.html#gazebo-jmavsim-and-nuttx-pixhawk-targets)<br />
 [QGroundControl](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html) (Optional)<br />
 
 ### Build
