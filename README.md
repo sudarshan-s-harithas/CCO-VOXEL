@@ -44,7 +44,7 @@ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
 roslaunch px4 mavros_posix_sitl.launch
 
 Terminal2: 
-roslaunch CCO_VOXEL MappingSim.launch
+roslaunch CCO_VOXEL Mapping_noise.launch
 
 Terminal3: 
 rosrun CCO_VOXEL Planner
@@ -52,7 +52,6 @@ rosrun CCO_VOXEL Planner
 Terminal4: 
 
 rosrun CCO_VOXEL Controller
-
 ```
 
 ### Acknowledgements 
