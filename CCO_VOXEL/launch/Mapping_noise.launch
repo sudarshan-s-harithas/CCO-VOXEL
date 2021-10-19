@@ -1,7 +1,7 @@
 <launch>
 
 <!-- MAVROS -->	
-<arg name="fcu_url" default="udp://:14540@127.0.0.1:14557" />
+<!-- <arg name="fcu_url" default="udp://:14540@127.0.0.1:14557" />
 <arg name="gcs_url" default="" />
 <arg name="tgt_system" default="1" />
 <arg name="tgt_component" default="1" />
@@ -20,7 +20,7 @@
 	<arg name="log_output" value="$(arg log_output)" />
 	<arg name="fcu_protocol" value="$(arg fcu_protocol)" />
 	<arg name="respawn_mavros" default="$(arg respawn_mavros)" />
-</include>
+</include> -->
 
 	
 	   <node pkg="CCO_VOXEL" type="pcNoise" name="pcNoise">
@@ -36,7 +36,7 @@
 
   <!-- Run a VoxelGrid filter to clean NaNs and downsample the data -->
   <node pkg="nodelet" type="nodelet" name="voxel_grid" args="load pcl/VoxelGrid pcl_manager" output="screen">
-    <remap from="~input" to="/output2" />
+    <remap from="~input" to="/camera/depth/points" />
     <rosparam>
       filter_field_name: z
       filter_limit_min: 0.01
