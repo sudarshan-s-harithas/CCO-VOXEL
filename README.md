@@ -35,6 +35,7 @@ We provide Gazebo environments to test our algorithm that can be found [here](ht
 
 Run the following commands to start CCO-VOXEL <br />
 
+First within the /PX4-Autopilot folder run the commands below to start SITL 
 
 ```
 Terminal1: 
@@ -42,10 +43,14 @@ source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
 roslaunch px4 mavros_posix_sitl.launch
-
+```
+Once SITL is started run Mapping_noise.launch to start ***OctoMap*** and Rviz, the ***noise*** parameter can be changed in the launch file to update the added noise levels into the point cloud.  
+```
 Terminal2: 
 roslaunch CCO_VOXEL Mapping_noise.launch
-
+```
+After starting the mapping process, takeoff the drone either using QGround Control or through the ***commander takeoff** command, and start the planner and controller. 
+```
 Terminal3: 
 rosrun CCO_VOXEL Planner
 
@@ -53,6 +58,8 @@ Terminal4:
 
 rosrun CCO_VOXEL Controller
 ```
+
+Once the programs are running use the ***2D Nav Goal*** tool of rviz to set the goal point. 
 
 ### Acknowledgements 
 TODO
