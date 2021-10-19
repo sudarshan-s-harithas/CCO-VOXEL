@@ -1,6 +1,8 @@
 ## CCO-VOXEL: Chance Constrained Optimization over Uncertain Voxel-Grid Representation for Safe Trajectory Planning
 
 CCO VOXEL is an algorithm that computes trajectory plans with probabilistic safety guarantees in real-time directly on the voxel-grid representation of the world. CCO-VOXEL maps the distribution over the distance to the closest obstacle to a distribution over collision-constraint violation and computes an optimal trajectory that minimizes the violation probability.
+
+![](https://github.com/sudarshan-s-harithas/CCO-VOXEL/blob/main/Images/teaser.png?raw=true)
  
 #### This page is under active development  
 
@@ -25,4 +27,33 @@ catkin_make -j4
 source devel/setup.bash 
 ```
 
+### Evaluation 
 
+We provide Gazebo environments to test our algorithm that can be found [here](https://github.com/sudarshan-s-harithas/CCO-VOXEL/tree/main/CCO_VOXEL/worlds), Please follow the the instructions given [here](https://github.com/sudarshan-s-harithas/CCO-VOXEL/tree/main/CCO_VOXEL#origanization-of-your-working-directories) before continuing with the execution of the programs.    
+
+![](https://github.com/sudarshan-s-harithas/CCO-VOXEL/blob/main/Images/simulation.gif)
+
+Run the following commands to start CCO-VOXEL <br />
+
+
+```
+Terminal1: 
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
+roslaunch px4 mavros_posix_sitl.launch
+
+Terminal2: 
+roslaunch CCO_VOXEL MappingSim.launch
+
+Terminal3: 
+rosrun CCO_VOXEL Planner
+
+Terminal4: 
+
+rosrun CCO_VOXEL Controller
+
+```
+
+### Acknowledgements 
+TODO

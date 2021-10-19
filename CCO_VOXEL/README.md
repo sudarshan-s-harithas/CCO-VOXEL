@@ -1,6 +1,12 @@
-## CCO-VOXEL: Chance Constrained Optimization over Uncertain Voxel-Grid Representation for Safe Trajectory Planning
+## Origanization of your working directories 
 
-CCO VOXEL is an algorithm that computes trajectory plans with probabilistic safety guarantees in real-time directly on the voxel-grid representation of the world. CCO-VOXEL maps the distribution over the distance to the closest obstacle to a distribution over collision-constraint violation and computes an optimal trajectory that minimizes the violation probability.
+Please arrange the folders of the code in the following order to run the simulation with minimum effort. 
+
+Add the following files into the **PX4-Autopilot** folder <br /> 
+
+Add the Gazebo world files (given [here](https://github.com/sudarshan-s-harithas/CCO-VOXEL/tree/main/CCO_VOXEL/worlds) ) into the ~/PX4-Autopilot/Tools/sitl_gazebo/worlds <br /> 
+Add the launch files given in the [**PX4_sitl**](https://github.com/sudarshan-s-harithas/CCO-VOXEL/tree/main/CCO_VOXEL/launch/PX4_sitl) folder into ~/PX4-Autopilot/launch <br /> 
+
 
 
 
