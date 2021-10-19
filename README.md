@@ -62,4 +62,4 @@ rosrun CCO_VOXEL Controller
 Once the programs are running use the *2D Nav Goal* tool of rviz to set the goal point. 
 
 ### Acknowledgements 
-TODO
+Our code is built upon [Fast-Planner](https://github.com/HKUST-Aerial-Robotics/Fast-Planner), we use their front end implementation of the *kinodynamic A* * with a difference that we use MMD as a part of the Edge Cost that connects two nodes of the graph. 
