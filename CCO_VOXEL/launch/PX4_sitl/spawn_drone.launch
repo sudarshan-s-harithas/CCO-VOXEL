@@ -12,9 +12,9 @@
     <arg name="vehicle" default="iris"/>
 
     <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/testWorld_court.world"/> -->
-    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/testWorld_box_cylinder_new.world"/> -->
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/testWorld_box_cylinder_new.world"/>
     <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/> -->
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/testWorld_box_cylinder_simple.world"/>
+<!--     <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/testWorld_box_cylinder_simple.world"/> -->
     
 
     <!-- <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/> -->
