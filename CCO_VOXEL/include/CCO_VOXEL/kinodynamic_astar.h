@@ -172,7 +172,7 @@ public:
   void reset();
   int search(Eigen::Vector3d start_pt, Eigen::Vector3d start_vel, Eigen::Vector3d start_acc,
              Eigen::Vector3d end_pt, Eigen::Vector3d end_vel,  float &time_to_desination,   bool init, visualization_msgs::MarkerArray MMD_map_vis ,  ros::Publisher MMD_map , 
-             visualization_msgs::MarkerArray A_star_vis ,  ros::Publisher A_star_pub
+             visualization_msgs::MarkerArray A_star_vis ,  ros::Publisher A_star_pub , std::string path_to_weights 
              , bool dynamic = false,
              double time_start = -1.0);   // main function which starts the Kinodynamic Planner
 

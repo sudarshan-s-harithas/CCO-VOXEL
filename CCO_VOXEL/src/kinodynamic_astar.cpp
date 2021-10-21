@@ -10,6 +10,7 @@
 using namespace std;
 using namespace Eigen;
 
+bool start= true; 
 MMDFunctions::MMD_variants MMDF;
 MMD_Map::MMD_Map_Functions MMD_costmap;
 Eigen::Matrix<double, 3, 1> origin_;
@@ -32,14 +33,16 @@ KinodynamicAstar::~KinodynamicAstar() {
 
 int fast_planner::KinodynamicAstar::search(Eigen::Vector3d start_pt, Eigen::Vector3d start_v, Eigen::Vector3d start_a,
                              Eigen::Vector3d end_pt, Eigen::Vector3d end_v, float &time_to_desination , bool init,  visualization_msgs::MarkerArray MMD_map_vis ,  ros::Publisher MMD_map , 
-                             visualization_msgs::MarkerArray A_star_vis ,  ros::Publisher A_star_pub , 
+                             visualization_msgs::MarkerArray A_star_vis ,  ros::Publisher A_star_pub , std::string path_to_weights , 
                              bool dynamic, double time_start  ) {
   
+if(start == true ){
+  MMDF.assign_weights(path_to_weights);
 
-  MMDF.assign_weights();
+start = false; 
+}
 
-
-  start_vel_ = start_v;
+start_vel_ = start_v;
   start_acc_ = start_a;
   std::cout<<"Here"<<std::endl;
   /* ---------- initialize ---------- */
@@ -86,7 +89,7 @@ int fast_planner::KinodynamicAstar::search(Eigen::Vector3d start_pt, Eigen::Vect
   Eigen::MatrixXf zero_matrix( 1, num_samples_of_distance_distribution);
   zero_matrix.setZero();
   bool trigger_convergence= false;
-  float goal_radius = 5.0; 
+  float goal_radius = 3.0; 
 
     using normal_dist   = std::normal_distribution<>;
     using discrete_dist = std::discrete_distribution<std::size_t>;
@@ -127,6 +130,11 @@ int fast_planner::KinodynamicAstar::search(Eigen::Vector3d start_pt, Eigen::Vect
   while (!open_set_.empty()) {
     /* ---------- get lowest f_score node ---------- */
     cur_node = open_set_.top();
+    //std:cout << "waypoint pos: " << cur_node->state.head(3).transpose() << endl;
+    // cout << "time: " << cur_node->time << endl;
+    // cout << "dist: " <<
+    // edt_environment_->evaluateCoarseEDT(cur_node->state.head(3),
+    // cur_node->time) << endl;
 
     /* ---------- determine termination ---------- */
 
@@ -165,6 +173,47 @@ int fast_planner::KinodynamicAstar::search(Eigen::Vector3d start_pt, Eigen::Vect
 
 
 
+/*
+    if (reach_horizon || near_end)
+    {
+      terminate_node = cur_node;
+      retrievePath(terminate_node);
+      if (near_end)
+      {
+        // Check whether shot traj exist
+        estimateHeuristic(cur_node->state, end_state, time_to_goal);
+        computeShotTraj(cur_node->state, end_state, time_to_goal);
+        if (init_search)
+          ROS_ERROR("Shot in first search loop!");
+      }
+    }
+    if (reach_horizon)
+    {
+      if (is_shot_succ_)
+      {
+        std::cout << "reach end" << std::endl;
+        return REACH_END;
+      }
+      else
+      {
+        std::cout << "reach horizon" << std::endl;
+        return REACH_HORIZON;
+      }
+    }
+
+    if (near_end)
+    {
+      if (is_shot_succ_)
+      {
+        std::cout << "reach end" << std::endl;
+        return REACH_END;
+      }
+      {
+        std::cout << "no path" << std::endl;
+        return NO_PATH;
+      }
+    }
+*/
 
     /* ---------- pop node and add to close set ---------- */
     open_set_.pop();
@@ -229,7 +278,34 @@ octomap::point3d state_pos_start;
         pro_t = cur_node->time + tau;                // this is the time for the node
         /* ---------- check if in free space ---------- */
 
+       // std::cout<<"Pro state is: "<<pro_state<<std::endl;
 
+        /* inside map range */
+  /*
+  if (pro_state(0) <= origin_(0) || pro_state(0) >= map_size_3d_(0) ||
+            pro_state(1) <= origin_(1) || pro_state(1) >= map_size_3d_(1) ||
+            pro_state(2) <= origin_(2) || pro_state(2) >= map_size_3d_(2)) {
+              std::cout<<"outside map"<<std::endl;
+          continue;
+        }
+  */
+
+    // if ((pro_state.head(3)- /*origin_*/droneLoc).norm() > 8.0)
+   //        {
+   //          std::cout<<"Outside Map"<<std::endl;
+   //          std::cout<<pro_state.head(3).transpose()<<std::endl;
+   //          continue;
+   //        }
+
+
+  //  if(abs(pro_state(0) - droneLoc(0)) > 8 || abs(pro_state(1) - droneLoc(1)) > 8 || abs(pro_state(2) - droneLoc(2)) > 8)
+  //  {
+  //          std::cout<<"Outside Map"<<std::endl;
+  //          std::cout<<pro_state.head(3).transpose()<<std::endl;
+  //          continue;
+
+
+  //  }
 
         /* random obstacle checking */
         octomap::point3d chckPt;
@@ -270,7 +346,68 @@ octomap::point3d state_pos_start;
 
         /* collision free */
 
+/*        Eigen::Vector3d             pos;
+        Eigen::Matrix<double, 6, 1> xt;
+        bool                        is_occ = false;
+        double EDT_cost=0; 
+        bool occupancy = false; 
+        float total_mmd_forward_value = 0;
+        // float mmd_total_threshold_value = check_num_*mmd_threshold_value;
 
+        for (int k = 1; k <= check_num_; ++k) {
+          double dt = tau * double(k) / double(check_num_);
+          stateTransit(cur_state, xt, um, dt);
+          pos = xt.head(3);
+
+          float dist;
+          octomap::point3d point;
+          
+          point.x() = pos(0);
+          point.y() = pos(1);
+          point.z() = pos(2);
+
+          //cout<<"Point to be checked is: "<<pos.transpose()<<endl;
+          
+          octomap::point3d closestObstacle;
+          OctoEDT->getDistanceAndClosestObstacle(point,dist, closestObstacle);
+          float threshold_value; 
+          Vector3i temp_idx; 
+          float MMD_val_per_point =0;
+          temp_idx = posToIndex(pos);
+
+
+          if( dist < 2){
+
+            actual_distance = Eigen::MatrixXf::Constant( 1, num_samples_of_distance_distribution, dist);
+            actual_distribution = zero_matrix.cwiseMax( noise_distribution - actual_distance );
+            MMD_val_per_point = MMDF.MMD_transformed_features(actual_distribution)  ;//MMDF.MMD_transformed_features(actual_distribution); //; MMDF.MMD_interpolation_method(dist) ;//MMDF.MMD_transformed_features_RBF(actual_distribution);  
+          }
+          else{
+            MMD_val_per_point =0;
+          }
+
+          // total_mmd_forward_value +=MMD_val_per_point;
+
+          
+          
+          if( MMD_val_per_point > mmd_threshold_value +1){  // 0.1
+
+            occupancy = true;
+            std::cout << mmd_threshold_value << "  " << MMD_val_per_point << std::endl;
+          }
+
+          if(occupancy)
+          {
+            break;
+          }
+        }
+        
+
+        if( occupancy){
+
+          continue;
+        }
+*/
          bool trigger_convergence = sqrt( ( cur_state.head(3) - end_state.head(3) ).norm() ) <= goal_radius ; 
 
 
@@ -395,6 +532,8 @@ octomap::point3d state_pos_start;
 
         delta_MMD= 0;
 
+        // std::cout << " Triggered trigger_convergence  /////////////////**************************////////////////// " << std::endl;
+        //  std::cout << " ******************************* /////////////////**************************////////////////// " << std::endl;
        }
 
 
@@ -485,7 +624,7 @@ void fast_planner::KinodynamicAstar::setParam(ros::NodeHandle& nh) {
   nh.param("search/max_vel", max_vel_, 2.0);
   nh.param("search/max_acc", max_acc_, 2.0);
   nh.param("search/w_time", w_time_, 10.0);
-  nh.param("search/horizon", horizon_, 5.0); // 3
+  nh.param("search/horizon", horizon_, 3.0); // 3
   nh.param("search/resolution_astar", resolution_, 0.05);
   nh.param("search/time_resolution", time_resolution_, 0.8);
   nh.param("search/lambda_heu", lambda_heu_, 1.0);

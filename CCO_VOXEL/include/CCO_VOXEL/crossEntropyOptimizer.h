@@ -14,6 +14,9 @@
 #include<algorithm>
 #include"visulization.h"
 #include <fstream>
+#include <filesystem>
+
+
 
 Visualizer::Trajectory_visualizer traj_vis;
 
@@ -31,10 +34,11 @@ namespace Optimizer
             double infCost = 1000000.0;
             Eigen::MatrixXd optimTrajCoeffs = Eigen::MatrixXd::Zero(11,3);
             Eigen::Vector3d var_vector;
+            std::string path_to_weights2 ; 
             CrossEntropyOptimizer();
             CrossEntropyOptimizer(int numIterations_);
             std::vector<Eigen::Vector3d> optimizeTrajectory(Bernstein::BernsteinPath bTraj, std::vector<Eigen::Vector3d> wayPts, float execTime, Map3D::OctoMapEDT costMap3D , ros::Publisher sample_trajectory_pub , 
-                ros::Publisher plan_dur_pub);
+                ros::Publisher plan_dur_pub , std::string path_to_weights);
             double costPerTrajectory(std::vector<Eigen::Vector3d> trajectory, std::vector<Eigen::Vector3d> trajectoryAcc, std::vector<Eigen::Vector3d> initTrajectory, Map3D::OctoMapEDT costMap3D , bool is_mean , 
                 ros::Publisher plan_dur_pub);
             double get_variance(Eigen::MatrixXd one_dimension_trajectory , int iter);
@@ -121,7 +125,7 @@ return integral_jerk_cost ;
 * main optimizer function    *
 ******************************/
 std::vector<Eigen::Vector3d> Optimizer::CrossEntropyOptimizer::optimizeTrajectory(Bernstein::BernsteinPath bTraj, std::vector<Eigen::Vector3d> wayPts, float execTime, Map3D::OctoMapEDT costMap3D , ros::Publisher sample_trajectory_pub ,
-    ros::Publisher plan_dur_pub)
+    ros::Publisher plan_dur_pub , std::string path_to_weights)
 {
     // generate the initial set of coefficients
     std::cout<<"----Generating bernstein trajectory for "<<wayPts.size()<<" points"<<std::endl;
@@ -137,6 +141,8 @@ std::vector<Eigen::Vector3d> Optimizer::CrossEntropyOptimizer::optimizeTrajector
     std::vector<Eigen::Vector3d> initBernsteinTraj = convertMatTrajToVecTraj(initWayPts); // returns initial trajectory 
 
     std::vector<Eigen::Vector3d> coeffs_ = bTraj.coeffs;                         // initial coefficients
+
+    path_to_weights2 = path_to_weights ; 
 
     assign_weights();
 
@@ -753,9 +759,13 @@ return float(res_val);
 
 void Optimizer::CrossEntropyOptimizer::assign_weights()
 {
+
 int rows = 100;
 int cols =5;
- std::string file = "/home/sudarshan/eval_ws/src/Mapping-with-Uncertainity/FastPlannerOctomap/include/FastPlannerOctomap/weight.csv" ;
+// std::cout << path_to_weights2 <<" " << " ------------------ " << std::endl;
+
+
+ std::string file = path_to_weights2 ;
   std::ifstream in(file);
   
   std::string line;

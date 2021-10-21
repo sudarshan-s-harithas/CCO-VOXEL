@@ -541,7 +541,7 @@ void Map3D::OctoMapEDT::assign_weights()
 {
 int rows = 100;
 int cols =5;
- std::string file = "/home/sudarshan/state_estimation_ws/src/FastPlannerOctomap/include/FastPlannerOctomap/weight.csv" ;
+ std::string file = "../src/CCO_VOXEL/include/CCO_VOXEL/weight.csv" ;
   std::ifstream in(file);
   
   std::string line;

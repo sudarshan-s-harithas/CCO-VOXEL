@@ -273,13 +273,12 @@ return tuple_key_values;
 
 
 
-
 void MMD_Map::MMD_Map_Functions::assign_weights_for_MMD(){
 
 
 	int rows = 100;
 int cols =5;
- std::string file = "/home/sudarshan/catkin_mmd/src/Mapping-with-Uncertainity/FastPlannerOctomap/include/FastPlannerOctomap/weight.csv" ;
+ std::string file ="../src/CCO_VOXEL/include/CCO_VOXEL/weight.csv" ;
   std::ifstream in(file);
   
   std::string line;

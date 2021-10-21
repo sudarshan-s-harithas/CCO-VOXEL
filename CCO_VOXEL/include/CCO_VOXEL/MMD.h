@@ -13,7 +13,7 @@ namespace MMDFunctions{
 
         float MMD_vectorized( Eigen::MatrixXf actual_distribution );
         float MMD_interpolation_method( float dist);
-        void assign_weights();
+        std::string assign_weights( std::string path_to_weights);
         float MMD_transformed_features( Eigen::MatrixXf actual_distribution );
         float MMD_transformed_features_RBF( Eigen::MatrixXf actual_distribution );
         float RBF_kernel( float val1 , float val2);
@@ -28,11 +28,11 @@ namespace MMDFunctions{
 }
 
 
-void MMDFunctions::MMD_variants::assign_weights()
+std::string MMDFunctions::MMD_variants::assign_weights(std::string path_to_weights)
 {
 int rows = 100;
 int cols =5;
- std::string file = "/home/sudarshan/eval_ws/src/Mapping-with-Uncertainity/FastPlannerOctomap/include/FastPlannerOctomap/weight.csv" ;
+ std::string file = path_to_weights ;
   std::ifstream in(file);
   
   std::string line;
