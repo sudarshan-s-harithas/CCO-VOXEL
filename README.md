@@ -50,10 +50,10 @@ Once SITL is started run Mapping_noise.launch to start *OctoMap* and Rviz, the *
 Terminal2: 
 roslaunch CCO_VOXEL Mapping_noise.launch
 ```
-After starting the mapping process, takeoff the drone either using QGround Control or through the *commander takeoff* command, and start the planner and controller. 
+After starting the mapping process, takeoff the drone either using QGround Control or through the *commander takeoff* command, and start the planner and controller,  and update the parameter *path_to_weights* to point the weights.csv file in the *CCO_VOXEL_Planner.launch* file. 
 ```
 Terminal3: 
-rosrun CCO_VOXEL Planner
+roslaunch CCO_VOXEL CCO_VOXEL_Planner.launch
 
 Terminal4: 
 
