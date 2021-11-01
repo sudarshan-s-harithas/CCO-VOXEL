@@ -6,7 +6,7 @@ CCO VOXEL is an algorithm that computes trajectory plans with probabilistic safe
  
 
 #### Preprint: https://arxiv.org/abs/2110.02904 
-
+#### YouTube: [Link](https://www.youtube.com/watch?v=qNAqAlb7m3E)
 ## Setup 
 
 Our evaluations were done on an 8-Core Intel Core i7-10870H processor, with 16GB RAM and 500GB HDD, running Ubunut 20.04 and ros noetic. we do recommend using powerfull setup. 
