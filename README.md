@@ -7,7 +7,7 @@ CCO VOXEL is an algorithm that computes trajectory plans with probabilistic safe
 
 #### Paper Accepted for Publication at ICRA 2022 
 #### Preprint: https://arxiv.org/abs/2110.02904 
-
+#### YouTube: [Link](https://www.youtube.com/watch?v=qNAqAlb7m3E)
 ## Setup 
 
 Our evaluations were done on an 8-Core Intel Core i7-10870H processor, with 16GB RAM and 500GB HDD, running Ubunut 20.04 and ros noetic. we do recommend using powerfull setup. 
@@ -64,7 +64,7 @@ Once the programs are running use the *2D Nav Goal* tool of rviz to set the goal
 
 ### PlayGround
 
-For better understanding of the algorithm please check the codes [here](https://github.com/sudarshan-s-harithas/CCO-VOXEL/tree/main/CCO_VOXEL/PlayGround)
+For better understanding of the algorithm please check the sample codes given [here](https://github.com/sudarshan-s-harithas/CCO-VOXEL/tree/main/CCO_VOXEL/PlayGround)
 
 ### Acknowledgements 
 Our code is built upon [Fast-Planner](https://github.com/HKUST-Aerial-Robotics/Fast-Planner), we use their front end implementation of the *kinodynamic A* * with a difference that we use MMD as a part of the Edge Cost that connects two nodes of the graph. 
