@@ -2,7 +2,7 @@
 
 
  <node pkg="CCO_VOXEL" type="Planner" name="Planner"  output="screen" >
-        <param name="path_to_weights" value="/home/sudarshan/eval_ws/src/Mapping-with-Uncertainity/FastPlannerOctomap/include/FastPlannerOctomap/weight.csv"/>
+        <param name="path_to_weights" value="/home/sudarshan/weight.csv"/>
 
     </node>
 

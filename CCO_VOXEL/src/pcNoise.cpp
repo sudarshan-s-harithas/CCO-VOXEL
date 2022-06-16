@@ -27,17 +27,17 @@ cloud_cb (const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
   xyz_cloud_filtered->width  = xyz_cloud->width;
   xyz_cloud_filtered->height = xyz_cloud->height;
 
-  // std::default_random_engine generator;
-  // std::normal_distribution<double> distribution(0.0, var); // mean and standard deviation
+  std::default_random_engine generator;
+  std::normal_distribution<double> distribution(0.0, var); // mean and standard deviation
 
   for(size_t points_i=0; points_i<xyz_cloud->points.size(); ++points_i)
   {
      if ((xyz_cloud->points[points_i].z < 4))
        {
 
-      xyz_cloud_filtered->points[points_i].x = xyz_cloud->points[points_i].x  ; //+ static_cast<float>(distribution(generator));
-      xyz_cloud_filtered->points[points_i].y = xyz_cloud->points[points_i].y ; // + static_cast<float>(distribution(generator));
-      xyz_cloud_filtered->points[points_i].z = xyz_cloud->points[points_i].z ; // + static_cast<float>(distribution(generator));
+      xyz_cloud_filtered->points[points_i].x = xyz_cloud->points[points_i].x  + static_cast<float>(distribution(generator));
+      xyz_cloud_filtered->points[points_i].y = xyz_cloud->points[points_i].y  + static_cast<float>(distribution(generator));
+      xyz_cloud_filtered->points[points_i].z = xyz_cloud->points[points_i].z  + static_cast<float>(distribution(generator));
     }
   }
   
